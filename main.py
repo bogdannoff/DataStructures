@@ -28,6 +28,7 @@ def bubleSort(l):
     return l
 
 
+# сортировка слиянием
 def mergeSort(l):
 
     def mergeLists(l1, l2):
@@ -61,12 +62,44 @@ def mergeSort(l):
 
     return mergeLists(l1, l2)
 
+
+# быстрая сортировка Хоара
+import random
+
+def qsort(l):
+
+    if len(l)>1:
+        c = l[random.randint(0, len(l)-1)]
+        ll = [el for el in l if el<c]
+        lc = list(filter(lambda el: el==c, l))
+        lr = [el for el in l if el>c]
+        l = qsort(ll)+lc+qsort(lr)
+    return l
+
+
+# Сортировка Шелла
+def shellSort(l):
+    step = len(l)//2
+    while step > 0:
+        for i in range(step, len(l)):
+            j = i
+            while l[j] < l[j-step] and j>=step:
+                l[j], l[j - step] = l[j-step], l[j]
+                j -=step
+        step //=2
+    return l
+
+
 l1 = [-5, 6, 0, -3, 8, 1]
-l3 = [random.randint(0, 100) for _ in range(100)]
-l2 = list(map(lambda _: random.randint(0, 100), range(100)))
-l1 = list(numpy.random.randint(0, 100, 10))
+l2 = [random.randint(0, 100) for _ in range(100)]
+l3 = list(map(lambda _: random.randint(0, 100), range(100)))
+l4 = list(numpy.random.randint(0, 100, 10))
 
 print(l1)
-print(mergeSort(l1))
+print(shellSort(l1))
+
+print(l4)
+print(shellSort(l4))
+
 
 
