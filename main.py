@@ -100,6 +100,3 @@ print(shellSort(l1))
 
 print(l4)
 print(shellSort(l4))
-
-
-
